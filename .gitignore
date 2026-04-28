@@ -1,0 +1,71 @@
+# ----------------------------------------------------------------------
+# Environment Variables & Secrets
+# ----------------------------------------------------------------------
+# Never commit your environment variables, as they contain DB passwords
+.env
+.env.backup
+.env.testing
+
+# ----------------------------------------------------------------------
+# Dependencies
+# ----------------------------------------------------------------------
+# Ignore Composer packages (they are installed via composer install)
+/vendor/
+
+# Ignore NPM packages (they are installed via npm install)
+node_modules/
+
+# ----------------------------------------------------------------------
+# Public & Generated Assets
+# ----------------------------------------------------------------------
+/public/build
+/public/hot
+/public/storage
+
+# ----------------------------------------------------------------------
+# Laravel Storage & Logs
+# ----------------------------------------------------------------------
+# Ignore locally generated files, caches, and logs
+/storage/*.key
+/storage/framework/cache/data/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
+/storage/framework/views/*
+/storage/logs/*
+/storage/app/public/*
+
+# Keep the directories in the repository, even if they are empty
+!/storage/app/public/.gitignore
+!/storage/framework/cache/data/.gitignore
+!/storage/framework/sessions/.gitignore
+!/storage/framework/testing/.gitignore
+!/storage/framework/views/.gitignore
+!/storage/logs/.gitignore
+
+# ----------------------------------------------------------------------
+# Testing
+# ----------------------------------------------------------------------
+# Ignore PHPUnit cache files
+.phpunit.cache
+.phpunit.result.cache
+
+# ----------------------------------------------------------------------
+# Database
+# ----------------------------------------------------------------------
+# Ignore local SQLite databases so you don't override the remote ones
+/database/*.sqlite
+/database/*.sqlite3
+/database/*.db
+
+# ----------------------------------------------------------------------
+# IDE & Operating System Files
+# ----------------------------------------------------------------------
+# Ignore PhpStorm specific configuration folder
+.idea/
+
+# Ignore VS Code specific configuration folder
+.vscode/
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
