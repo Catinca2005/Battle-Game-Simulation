@@ -1,64 +1,74 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# ⚔️ Battle Game Simulation
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Battle simulation game built with **Laravel (PHP)** and **PostgreSQL**.
+Made as a university internship project.
 
-## About Laravel
+## 🌐 Live Demo
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+👉 [https://battle-game-simulation.onrender.com/battle](https://battle-game-simulation.onrender.com/battle)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+> ⚠️ First load may take ~60 seconds if the server was idle (free hosting).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🎮 About the Game
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+You are **Kratos**, a legendary hero who has been fighting monsters for over a hundred years. As he walks through the forest, he encounters a wild monster — and the battle begins!
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Each battle is randomly generated. Both Kratos and the monster start with random stats within their ranges:
 
-## Laravel Sponsors
+|  | Kratos | Monster |
+|---|---|---|
+| ❤️ Health | 65 – 100 | 50 – 80 |
+| ⚔️ Strength | 75 – 90 | 55 – 80 |
+| 🛡️ Defence | 40 – 50 | 50 – 70 |
+| 💨 Speed | 40 – 50 | 40 – 60 |
+| 🍀 Luck | 10% – 20% | 30% – 45% |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Kratos also has 2 special skills:
+- **Rapid Fire** — strikes twice in one turn (15% chance)
+- **Magic Armour** — takes only half damage when defending (15% chance)
 
-### Premium Partners
+### How it works
+- The fighter with higher **speed** attacks first (or higher **luck** if speed is equal)
+- Each turn: `Damage = Attacker Strength – Defender Defence`
+- The defender can **dodge** the hit based on their luck
+- After each attack, roles switch
+- The game ends when someone reaches **0 health** or after **15 turns**
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+---
 
-## Contributing
+## 🛠️ Built With
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Backend:** PHP 8.2 / Laravel 8
+- **Frontend:** Blade Templates, HTML, CSS
+- **Server:** Docker, Nginx
+- **Hosting:** Render.com
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🚀 How It Was Deployed
 
-## Security Vulnerabilities
+The app is hosted for free on **Render.com**, connected to GitHub for automatic deploys.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- Every `git push` triggers a new deployment automatically
+- The app runs inside a **Docker** container with Nginx
+- The database is a free **PostgreSQL** instance on Render
+- All secrets (passwords, app key) are stored in Render's environment variables — not in the code
+- A deploy script runs `php artisan migrate --force` automatically on each deploy
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 💻 Run Locally
+
+```bash
+git clone https://github.com/Catinca2005/Battle-Game-Simulation.git
+cd Battle-Game-Simulation
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan serve
+```
+
+Then open [http://localhost:8000/battle](http://localhost:8000/battle) in your browser.
